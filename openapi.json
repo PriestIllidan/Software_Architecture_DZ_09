@@ -1,0 +1,112 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Заказать ресурсы на облаке",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/pool": {
+      "get": {
+        "description": "Получить все ресурсы на облаке",
+        "responses": {
+          "200": {
+            "description": "Успешный ответ со списком ресурсов на облаке",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/pool"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Все остальное"
+          }
+        }
+      }
+    },
+    "/customer": {
+      "get": {
+        "description": "Получить данные о заказчиках",
+        "responses": {
+          "200": {
+            "description": "Успешный ответ со списком заказчиков",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/customer"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Все остальное"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "pool": {
+        "type": "object",
+        "required": [
+          "customer_id",
+          "RAM",
+          "CPU",
+          "HDD"
+        ],
+        "properties": {
+          "customer_id": {
+            "type": "number",
+            "description": "Id заказчика"
+          },
+          "RAM": {
+            "type": "integer",
+            "description": "Объем оперативной памяти"
+          },
+          "CPU": {
+            "type": "integer",
+            "description": "Количество процессоров"
+          },
+          "HDD": {
+            "type": "number",
+            "description": "Объем памяти"
+          },
+          "OS": {
+            "type": "string",
+            "description": "Операционная система"
+          }
+        }
+      },
+      "customer": {
+        "type": "object",
+        "required": [
+          "full_name",
+          "address",
+          "hash_password"
+        ],
+        "properties": {
+          "full_name": {
+            "type": "string",
+            "description": "ФИО заказчика"
+          },
+          "address": {
+            "type": "string",
+            "description": "Адрес заказчика"
+          },
+          "hash_password": {
+            "type": "number",
+            "description": "Hash пароль"
+          }
+        }
+      }
+    }
+  }
+}
